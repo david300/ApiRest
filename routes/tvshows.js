@@ -14,9 +14,20 @@ module.exports = function(app) {
         });
     };
     
+    findByTitle = function(req, res){
+        TVShow.find(req.params.title, function(err, tvshows){
+            if(!err){
+                res.send(tvshows);
+            }else{
+                console.log('ERROR: ' + err);
+            }
+        });
+    };
+    
     //GET - Return a TVShow with specified ID
     findById = function(req, res) {
-        TVShow.findById(req.param.id, function(err, tvshow) {
+        console.log("Find: " + req.params.id);
+        TVShow.findById(req.params.id, function(err, tvshow) {
             if(!err) {
                 res.send(tvshow);
             } else {
@@ -91,6 +102,7 @@ module.exports = function(app) {
     //Link routes and functions
     app.get('/tvshows', findAllTVShows);
     app.get('/tvshow/:id', findById);
+    app.get('/tvshow/title/:title', findByTitle);
     app.post('/tvshow', addTVShow);
     app.put('/tvshow/:id', updateTVShow);
     app.delete('/tvshow/:id', deleteTVShow);
