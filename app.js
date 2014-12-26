@@ -15,6 +15,8 @@ app.get('/', function(req, res) {
 });
 
 routes = require('./routes/tvshows')(app);
+routes = require('./routes/chats')(app);
+routes = require('./routes/users')(app);
 
 //mongoose.connect('mongodb://localhost/tvshows', function(err, res) {
 mongoose.connect('mongodb://dferreira:dferreira@ds027718.mongolab.com:27718/falta-uno', function(err, res) {
